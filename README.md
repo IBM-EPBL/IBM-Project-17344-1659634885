@@ -1,8 +1,9 @@
 Personal Expense Tracker Application (Cloud App Development)- IBM Nalaiya Thiran
 
-
-Team Leader - Sathish Kumar G
-Team Members:
-  Narayan Kumar M
-  Shai Prashanth K
-  Preethi S
+# Team Members
+<ol>
+<li>Sathish Kumar G - Team Leader</li> 
+<li>Narayan Kumar M</li>
+<li>Shai Prashanth K</li>
+<li>Preethi S</li>
+</ol>
