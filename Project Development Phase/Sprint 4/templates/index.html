@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Expense Tracker</title>
+        <link rel="icon" type="image/x-icon" href="../static/img/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+   
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand js-scroll-trigger" href="#page-top">Expense Tracker  </a>
+                
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ml-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ml-auto">
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" data-toggle="modal" data-target="#loginModal">Login</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">SignUp</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        
+        <header class="masthead">
+            {% for mess in get_flashed_messages() %}
+            <center>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert" style="width: 50%;">
+                    <button
+                        type="button"
+                        class="fad close"
+                        data-dismiss="alert"
+                        aria-label="Close"
+                    >
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{mess}}
+                    </div>
+            </center>
+            {% endfor %}
+            <div class="container">
+                <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger"  data-toggle="modal" data-target="#loginModal" style="margin:2rem 3rem 2rem">Log In</a>
+                <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger"  data-toggle="modal" data-target="#signupModal" style="margin:2rem 3rem 2rem">Sign Up</a>
+            </div>
+        </header>
+        
+        <!-- Footer-->
+        <footer class="footer py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 text-lg-left"></div>
+                    <div class="col-lg-4 my-3 my-lg-0">
+                        Copyright © Expense Tracker 2020
+                    </div>
+                    <div class="col-lg-4 text-lg-right">
+                        
+                    </div>
+                </div>
+            </div>
+        </footer>
+        
+
+        <!-- user model (login) -->
+
+        <div class="modal fade" style="font-family: Montserrat;" id="loginModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Log In</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" id="loginform">
+                            {{logForm.hidden_tag()}}
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Email</label>
+                                <div class="col-sm-10">
+                                    {% if logForm.email1.errors %}
+                                    <span class="text-danger">
+                                        {% for error in logForm.email1.errors %}
+                                          {% if error != "This field is required." %}
+                                            {{ error }}
+                                        {%endif%}
+                                        {% endfor %}
+                                    </span>
+                                    {% endif %}
+                                    {{logForm.email1(class='form-control')}}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Password</label>
+                                <div class="col-sm-10">
+                                    {{logForm.password1(class='form-control')}}
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        {{logForm.submit1(class="btn btn-primary",form="loginform")}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- user model (signup) -->
+        
+        <div class="modal fade" style="font-family: Montserrat;" id="signupModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Sign Up</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" id="signupform">
+                            {{signForm.hidden_tag()}}
+                              <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Name</label>
+                                <div class="col-sm-10">
+                                    {{signForm.username2(class='form-control',required="required")}}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                               
+                                <label class="col-sm-2 col-form-label">Email</label>
+                                <div class="col-sm-10">
+                                    {% if signForm.email2.errors %}
+                                    <span class="text-danger">
+                                        {% for error in signForm.email2.errors %}
+                                        {% if error != "This field is required." %}
+                                            {{ error }}
+                                            {%endif%}
+                                        {% endfor %}
+                                    </span>
+                                    {% endif %}
+                                    {{signForm.email2(class="form-control")}}
+                                   
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Password</label>
+                                <div class="col-sm-10">
+                                    <!-- <input type="password" class="form-control" id="inputPassword"> -->
+                                    {% if signForm.password2.errors %}
+                                    <span class="text-danger">
+                                        {% for error in signForm.password2.errors %}
+                                        {% if error != "This field is required." %}
+                                            {{ error }}
+                                            {%endif%}
+                                        {% endfor %}
+                                    </span>
+                                    {% endif %}
+                                    {{signForm.password2(class='form-control')}}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Confirm Password</label>
+                                <div class="col-sm-10">
+                                    <!-- <input type="password" class="form-control" id="inputPassword"> -->
+                                    {{signForm.pass_confirm(class='form-control')}}
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <!-- <button type="button" class="btn btn-primary">Sign Up</button> -->
+                        {{signForm.submit2(class='btn btn-primary',form="signupform")}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <!-- Contact form JS-->
+        <script src="{{ url_for('static', filename='mail/jqBootstrapValidation.js') }}"></script>
+        <script src="{{ url_for('static', filename='mail/contact_me.js') }}"></script>
+        <!-- Core theme JS-->
+        <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+    </body>
+</html>
