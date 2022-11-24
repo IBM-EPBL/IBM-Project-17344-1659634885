@@ -21,4 +21,5 @@
 ### [Project Design Phase 1](https://github.com/IBM-EPBL/IBM-Project-17344-1659634885/tree/main/Project%20Design%20%26%20Planning/Project%20Design%20Phase%201)
 ### [Project Design Phase 2](https://github.com/IBM-EPBL/IBM-Project-17344-1659634885/tree/main/Project%20Design%20%26%20Planning/Project%20Design%20Phase%202)
 ### [Project Planning Phase](https://github.com/IBM-EPBL/IBM-Project-17344-1659634885/tree/main/Project%20Design%20%26%20Planning/Project%20Planning)
+### [JIRA Docs](https://github.com/IBM-EPBL/IBM-Project-17344-1659634885/tree/main/Project%20Development%20Phase)
 ### [Project Development Phase](https://github.com/IBM-EPBL/IBM-Project-17344-1659634885/tree/main/Project%20Development%20Phase)   
